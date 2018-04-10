@@ -1,0 +1,64 @@
+    #include <Servo.h>
+    
+    Servo servo;
+    int pin = 8;
+    int degree = 45;
+    
+    void setup(){
+      servo.attach(pin);
+      delay(3000);
+      Serial.begin(9600);
+    }
+    
+    void ir(int value){
+      Serial.print("IR");
+      //750
+      servo.writeMicroseconds(value);
+      Serial.print("  degrees = "); 
+      Serial.println(servo.read());
+    }
+    
+    void volver(int value){
+       Serial.print("VOLVER");
+     //2240
+      servo.writeMicroseconds(value);
+      Serial.print("  degrees = "); 
+      Serial.println(servo.read());
+    }
+    
+    void stop(){
+       Serial.println("STOP");
+       //servo.write(0);
+       servo.writeMicroseconds(0);
+    }
+    
+    void loop(){
+         
+         //delay(-1);
+         
+         servo.write(degree);
+         Serial.print("A:");
+         Serial.println(servo.read());
+         delay(200);
+         servo.write(90);
+         Serial.print("B:");
+         Serial.println(servo.read());
+         servo.write(degree+75);
+         Serial.print("C:");
+         Serial.println(servo.read());
+         delay(200);
+         servo.write(90);
+         Serial.print("D:");
+         Serial.println(servo.read());
+         delay(1000);
+         /*stop();
+         delay(1000);
+         ir(750);
+         //delay(200);
+         volver(2240);
+         delay(1000);*/
+
+     
+      
+      
+    }
